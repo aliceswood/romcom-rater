@@ -1,28 +1,18 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import Link from 'next/link';
+import Head from 'next/head';
+import Layout, { siteTitle } from '../components/layout';
+import utilStyles from '../styles/utils.module.css';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <Layout home>
       <Head>
-        <title>Romcom Rater!</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>{siteTitle}</title>
       </Head>
-
-      <main>
-        <h1 className={styles.title}>
-          Go visit  <Link href='/films/first-film'> film 1 page</Link>
-        </h1>
-        <h1 className={styles.title}>
-          Visit your own <Link href='/user-page'>User Page!</Link>
-        </h1>
-      </main>
-
-      <footer>
-      
-      </footer>
-
-    </div>
+      <section className={utilStyles.headingMd}>
+        <p>
+          (This page will be amended to be Romcom rater screen!)
+        </p>
+      </section>
+    </Layout>
   );
 }
