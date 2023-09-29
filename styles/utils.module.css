@@ -26,6 +26,7 @@
 }
 
 .borderCircle {
+  margin-top: 20px;
   border-radius: 9999px;
 }
 
@@ -49,4 +50,8 @@
 
 .lightText {
   color: #666;
+}
+
+.navigationLinks {
+  margin: 3rem 0 0;
 }

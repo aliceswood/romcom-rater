@@ -15,9 +15,9 @@ return (
           (This page will be amended to be Romcom rater screen!)
         </p>
       </section>
-      <h2>
-        <Link href="/user-page" data-testid="userPageLink">User page</Link>
-      </h2>
+      <div className={utilStyles.navigationLinks}>
+        <Link href="/user-page" data-testid="userPageLink">User page →</Link>
+      </div>
   </>
 
   );
