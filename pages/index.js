@@ -1,5 +1,4 @@
 import Head from 'next/head';
-// import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 
@@ -11,13 +10,13 @@ return (
     <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
+      <section className={utilStyles.headingMd} data-testid="romComPlaceholder">
         <p>
           (This page will be amended to be Romcom rater screen!)
         </p>
       </section>
       <h2>
-        <Link href="/user-page">User page</Link>
+        <Link href="/user-page" data-testid="userPageLink">User page</Link>
       </h2>
   </>
 
