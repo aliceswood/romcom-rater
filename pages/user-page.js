@@ -28,7 +28,7 @@ export default function UserPage({children, home}) {
       </>
       </header>
         <div className={utilStyles.navigationlinks}>
-          <Link href="/" data-testid="homeLink">← Back to home</Link>
+          <Link href="/" data-testid="homeLink" id="homeLink">← Back to home</Link>
         </div>
     </>
   );

@@ -16,7 +16,7 @@ return (
         </p>
       </section>
       <div className={utilStyles.navigationLinks}>
-        <Link href="/user-page" data-testid="userPageLink">User page →</Link>
+        <Link href="/user-page" data-testid="userPageLink" id="userLink">User page →</Link>
       </div>
   </>
 
