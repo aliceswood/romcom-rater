@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
+import Films from './films/films';
 
 export const siteTitle = 'Romcom Rater';
 export default function Home() {
@@ -11,9 +12,9 @@ return (
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd} data-testid="romComPlaceholder">
-        <p>
-          (This page will be amended to be Romcom rater screen!)
-        </p>
+        <div>
+          <Films/>
+        </div>
       </section>
       <div className={utilStyles.navigationLinks}>
         <Link href="/user-page" data-testid="userPageLink" id="userLink">User page →</Link>
