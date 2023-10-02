@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
-import Films from './films/films';
+import Films from './films';
 
 export const siteTitle = 'Romcom Rater';
 export default function Home() {
