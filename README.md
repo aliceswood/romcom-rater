@@ -22,7 +22,7 @@ Keep your romcom watchlist in one place and never forget a movie you've adored. 
 
 I started off creating a very basic plan of what the app would look like to get clearer in my mind what functionality I would need to implement. This also helped me to identify what external resources or learning I might need to look into such as a film API, or additional framework understanding.
 
-![excalidraw-plan](/public/images/excalidraw-plan.png)
+![excalidraw-plan](/docs/excalidraw-plan.png)
 
 The next step I took was to decide on using Next.js as the project framework. I had heard that a lot of companies use Next.js as it enables server-side rendering which would improve UX and performance due to the reduced processing time of the site. I was keen to learn  more about Next.js and the other benefits that come with doing so.
 

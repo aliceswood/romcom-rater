@@ -1,4 +1,4 @@
-import UserPage from "../pages/user-page";
+import UserPage from "./user-page";
 import "@testing-library/jest-dom";
 import {render, screen} from "@testing-library/react"
 
