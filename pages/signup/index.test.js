@@ -2,7 +2,6 @@ import SignUpPage from "./index.js";
 import "@testing-library/jest-dom";
 import {render, screen} from "@testing-library/react";
 import mockRouter from 'next-router-mock';
-;
 
 jest.mock('next/router', () => jest.requireActual('next-router-mock'));
 

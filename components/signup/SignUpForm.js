@@ -56,6 +56,7 @@ export default function SignUpForm ({}) {
         value={name} 
         onChange={handleNameChange}
         autoComplete="name"
+        data-testid="nameField"
         />
         <input 
         placeholder="Email address" 
@@ -63,6 +64,7 @@ export default function SignUpForm ({}) {
         name="email" 
         value={email} 
         onChange={handleEmailChange}
+        data-testid="emailField"
         />
         <input 
         placeholder="Username" 
@@ -70,6 +72,7 @@ export default function SignUpForm ({}) {
         name="username" 
         value={username} 
         onChange={handleUsernameChange}
+        data-testid="usernameField"
         />
         <input 
         placeholder="Password" 
@@ -77,8 +80,9 @@ export default function SignUpForm ({}) {
         name="password" 
         value={password} 
         onChange={handlePasswordChange}
+        data-testid="passwordField"
         />
-        <button type="submit">Sign up!</button>
+        <button type="submit"data-testid="signUpButton">Sign up!</button>
       </form>
     </>
   )
