@@ -13,7 +13,7 @@ export default function SignUpPage () {
         <SignUpForm/>
       </>  
       <div>
-        <Link href="/login" data-testid="logInPage" id="logInPage">Already have an account?</Link>
+        <Link href="/login" data-testid="logInPageLink" id="logInPage">Already have an account?</Link>
       </div>
     </>
   )

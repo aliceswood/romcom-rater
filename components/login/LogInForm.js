@@ -1,4 +1,6 @@
-const LogInForm = ({}) => {
+import { useState } from 'react';
+
+export default function LogInForm ({}) {
 
   return (
     <> 
@@ -7,10 +9,8 @@ const LogInForm = ({}) => {
         <input placeholder="Email address" type="text"/>
         <input placeholder="Username" type="text"/>
         <input placeholder="Password" type="password"/>
-        <button type="submit">Submit</button>
+        <button type="submit">Log in!</button>
       </form>
     </>
   )
 }
-
-export default LogInForm;

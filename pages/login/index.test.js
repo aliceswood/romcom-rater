@@ -1,4 +1,4 @@
-import SignUpPage from "./index.js";
+import LogInPage from "./index.js";
 import "@testing-library/jest-dom";
 import {render, screen} from "@testing-library/react";
 import mockRouter from 'next-router-mock';
@@ -6,12 +6,12 @@ import mockRouter from 'next-router-mock';
 jest.mock('next/router', () => jest.requireActual('next-router-mock'));
 
 
-describe("signUpPage", () => {
+describe("LogInPage", () => {
   it("renders the sign up page correctly", () => {
-    mockRouter.push("/signup");
+    mockRouter.push("/login");
 
-    render(<SignUpPage/>)
-    expect(screen.getByTestId('logInPageLink')).toBeInTheDocument();
-    expect(screen.getByText('Sign up!')).toBeInTheDocument();
+    render(<LogInPage/>)
+    expect(screen.getByTestId('signUpPage')).toBeInTheDocument();
+    expect(screen.getByText('Log in!')).toBeInTheDocument();
   });
 });
