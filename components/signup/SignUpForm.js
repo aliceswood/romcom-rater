@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 export default function SignUpForm ({}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   // onChange functions
   const handleNameChange = (event) => {
@@ -38,7 +39,7 @@ export default function SignUpForm ({}) {
     })
     if (res.status === 200) {
       console.log('User signed up');
-      // add redirect to log in page
+      router.push('/login')
     } else {
       console.log('Error', error);
       // add redirect and error printing for sign up
