@@ -1,5 +1,3 @@
-require('jest-fetch-mock').enableMocks()
-
 const nextJest = require("next/jest");
 const createJestConfig = nextJest({
   dir: "./",

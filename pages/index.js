@@ -18,7 +18,6 @@ export async function getServerSideProps() {
 }
 
 export default function Home({repo}) {
-  console.log(repo)
 
   const filmList = repo.results.map(((film, i) => (
     <p key={i}>{film.title}</p>
