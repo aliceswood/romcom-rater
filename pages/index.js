@@ -30,7 +30,7 @@ export default function Home({repo}) {
       </Head>
       <div data-testid="filmTitle">{filmList}</div>
       <div className={utilStyles.navigationLinks}>
-        <Link href="/user-page" data-testid="userPageLink" id="userLink">User page →</Link>
+        <Link href="/userpage" data-testid="userPageLink" id="userLink">User page →</Link>
       </div>
     </>
   )

@@ -2,8 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import profilePic from './profile.jpg';
 import Head from 'next/head';
-import styles from './user-page.module.css';
-import utilStyles from '../styles/utils.module.css';
+import styles from './index.module.css';
+import utilStyles from '../../styles/utils.module.css';
 
 const  name = 'Alice'
 export default function UserPage({children, home}) {
