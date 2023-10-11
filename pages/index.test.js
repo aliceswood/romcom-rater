@@ -1,16 +1,10 @@
 import Home, {filteredUrl} from "./index";
 import "@testing-library/jest-dom";
 import {render, screen} from "@testing-library/react";
-import fetchMock from "jest-fetch-mock";;
 
 const filmOne = {title:'film-one'}
 const filmTwo = {title:'film-two'}
 const mockrepo = {results:[filmOne, filmTwo]}
-
-beforeEach(() => {
-  fetchMock.enableMocks();
-  fetch.resetMocks();
-});
 
 describe("Homepage", () => {
   it("renders the homepage", async () => {
