@@ -1,25 +1,21 @@
-'use client'
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
-import { NextResponse } from 'next/server'
+import { supabase } from "../../../lib/initSupabase";
+import { serialize } from 'cookie';
 
+export default async function POST(req, res) {
+  const { email, password } = req.body;
 
-export async function POST(request) {
-  const requestUrl = new URL(request.url)
-  const formData = await request.formData()
-  const email = formData.get('email')
-  const username = formData.get('username')
-  const password = formData.get('password')
-  const cookieStore = cookies()
-  const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
+  console.log(req)
 
-  await supabase.auth.signInWithPassword({
-    email,
-    password,
-    username,
+  let { data, error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password,
   })
 
-  return NextResponse.redirect(requestUrl.origin, {
-    status: 301,
-  })
+  console.log("error", error);
+  console.log("data", data);
+  if (error) return res.status(401).json({ error: error.message });
+
+  const user = data.user
+  res.setHeader('Set-Cookie', serialize('userid', user.id))
+  return res.status(200).json({ user: user });
 }

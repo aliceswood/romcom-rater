@@ -1,65 +1,54 @@
 'use client'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 export default function LoginForm() {
-  const supabase = createClientComponentClient();
-  // const router = useRouter();
+  const router = useRouter();
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
    // onChange functions
     const handleEmailChange = (event) => {
     setEmail(event.target.value)
   };
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value)
-  };
   const handlePasswordChange = (event) => {
     setPassword(event.target.value)
   };
 
-  const handleSubmit = async (event) => {
+  const handleLogIn = async (event) => {
     event.preventDefault();
 
-    const {data, error} = await supabase.auth.signInWithPassword({
-      email: email,
-      username: username,
-      password: password,
+    const res = await fetch("/api/auth/login", {
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
     })
-
-    console.log('Submitted:', { email, password, username })
-
+    if (res.status === 200) {
+      console.log('User logged in');
+      router.push('/userpage')
+    } else {
+      console.log('Error', res.error);
+      // add redirect and error handling for failed sign up
+    }
+  }
     // visual feedback for user to be added.
-  };
-
-  // const handleSignOut = async () => {
-  //   await supabase.auth.signOut()
-  //   router.refresh()
-  // }
-
+  
   return (
     <>
      <div>
         <h2>Login Form</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogIn}>
           <div>
             <label>Email:</label>
             <input 
               type="email"
               value={email}
               onChange={(handleEmailChange)} />
-          </div>
-          <div>
-            <label>Username:</label>
-            <input
-              type="username"
-              name="username"
-              onChange={(handleUsernameChange)}
-              value={username}
-            />
           </div>
           <div>
             <label>Password:</label>
@@ -71,10 +60,10 @@ export default function LoginForm() {
             />
           </div>
           <div>
-            <button onClick={handleSubmit}>Log in</button>
+          <button type="submit"data-testid="logInButton">Log in</button>
           </div>
         </form>
       </div>
     </>
   )
-}
+  }
