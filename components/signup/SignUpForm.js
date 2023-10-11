@@ -41,8 +41,8 @@ export default function SignUpForm ({}) {
       console.log('User signed up');
       router.push('/login')
     } else {
-      console.log('Error', error);
-      // add redirect and error printing for sign up
+      console.log('Error', res.error);
+      // add redirect and error handling for failed sign up
     }
   }
 
