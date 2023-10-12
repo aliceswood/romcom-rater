@@ -1,10 +1,10 @@
-import registerUser from "./register";
+import handler from "./register";
 import { supabase } from "../../lib/initSupabase";
 import { createMocks } from "node-mocks-http";
 
 jest.mock("../../lib/initSupabase");
 
-describe("registerUser", () => {
+describe("handler", () => {
   it("user signed up", async () => {
     const { req, res } = createMocks({
       method: "POST",
@@ -16,9 +16,12 @@ describe("registerUser", () => {
       },
     });
 
-    jest.spyOn(supabase.auth, "signUp").mockReturnValue({ user: "test" });
+    jest.spyOn(supabase.auth, "signUp").mockReturnValue({
+      data: { user: "test" },
+      error: null,
+    });
 
-    await registerUser(req, res);
+    await handler(req, res);
 
     expect(supabase.auth.signUp).toHaveBeenCalledWith({
       email: "email",
@@ -55,7 +58,7 @@ describe("registerUser", () => {
     jest.fn().mockReturnValue({ user: null, error: mockError });
     jest.spyOn(supabase.auth, "signUp").mockReturnValue({ error: mockError });
 
-    await registerUser(req, res);
+    await handler(req, res);
 
     expect(res._getStatusCode()).toEqual(401);
     expect(JSON.parse(res._getData())).toEqual(
