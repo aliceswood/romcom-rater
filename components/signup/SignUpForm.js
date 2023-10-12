@@ -51,12 +51,12 @@ export default function SignUpForm ({}) {
 
         setValidationError(previousState => ({ 
           ...previousState, 
-          password: errorsList.password[0],
-          name: errorsList.name[0],
-          username: errorsList.username[0],
-          email: errorsList.email[0],
+          password: errorsList.password ? errorsList.password[0] : '',
+          name: errorsList.name ? errorsList.name[0] : '',
+          username: errorsList.username ? errorsList.username[0] : '',
+          email: errorsList.email ? errorsList.email[0] : '',
         }))  
-            
+
       } catch (error) {
         console.error('Error parsing error response:', error);
       }
