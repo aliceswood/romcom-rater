@@ -22,9 +22,9 @@ export default function SignUpForm ({}) {
     setPassword(event.target.value)
   };
 
-  const registerUser = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     const res = await fetch("/api/register", {
       body: JSON.stringify({
         name: event.target.name.value,
@@ -41,8 +41,13 @@ export default function SignUpForm ({}) {
       console.log('User signed up');
       router.push('/login')
     } else {
-      console.log('Error', res.error);
-      router.push('/signup')    
+      try {
+        const errorResponse = await res.json();
+        console.log('Error', errorResponse.error);
+      } catch (error) {
+        console.error('Error parsing error response:', error);
+      }
+      router.push('/signup');
     }
   }
 
@@ -50,46 +55,46 @@ export default function SignUpForm ({}) {
     <> 
       <div>
         <h2>Sign Up Form</h2>
-        <form onSubmit={registerUser}>  
+        <form onSubmit={handleSubmit}>  
           <div>
           <label>Name:</label> 
             <input 
-            name="name" 
-            type="text" 
-            value={name} 
-            onChange={handleNameChange}
-            autoComplete="name"
-            data-testid="nameField"
+              name="name" 
+              type="text" 
+              value={name} 
+              onChange={handleNameChange}
+              autoComplete="name"
+              data-testid="nameField"
             />
           </div>
           <div>
             <label>Email:</label> 
             <input 
-            type="email" 
-            name="email" 
-            value={email} 
-            onChange={handleEmailChange}
-            data-testid="emailField"
+              type="email" 
+              name="email" 
+              value={email} 
+              onChange={handleEmailChange}
+              data-testid="emailField"
             />
           </div>
           <div>
             <label>Username:</label> 
             <input 
-            type="text" 
-            name="username" 
-            value={username} 
-            onChange={handleUsernameChange}
-            data-testid="usernameField"
+              type="text" 
+              name="username" 
+              value={username} 
+              onChange={handleUsernameChange}
+              data-testid="usernameField"
             />
           </div>
           <div>
             <label>Password:</label> 
             <input 
-            type="password" 
-            name="password" 
-            value={password} 
-            onChange={handlePasswordChange}
-            data-testid="passwordField"
+              type="password" 
+              name="password" 
+              value={password} 
+              onChange={handlePasswordChange}
+              data-testid="passwordField"
             />
           </div>
           <button type="submit"data-testid="signUpButton">Sign up!</button>

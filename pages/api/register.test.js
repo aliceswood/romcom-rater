@@ -9,7 +9,7 @@ describe("handler", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
-        email: "email",
+        email: "email@example.com",
         password: "password",
         name: "name",
         username: "username",
@@ -24,7 +24,7 @@ describe("handler", () => {
     await handler(req, res);
 
     expect(supabase.auth.signUp).toHaveBeenCalledWith({
-      email: "email",
+      email: "email@example.com",
       password: "password",
       options: {
         data: {
@@ -46,7 +46,7 @@ describe("handler", () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
-        email: "email",
+        email: "email@example.com",
         password: "password",
         name: "name",
         username: "username",
@@ -67,4 +67,7 @@ describe("handler", () => {
       })
     );
   });
+
+
+  // invalid details passed - error thrown
 });

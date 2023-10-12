@@ -1,11 +1,28 @@
 import { supabase } from "../../lib/initSupabase";
 import { serialize } from 'cookie';
+import { z } from "zod";
+
+
+export const signUpSchema= z.object({
+  username: z.string().min(1),
+  email: z.string().email(),
+  password: z.string().min(5),
+  name: z.string().min(1)
+});
 
 
 export default async function POST(req, res) {
-  const { email, password, name, username } = req.body;
+  const result = signUpSchema.safeParse(req.body)
+  if ( !result.success) {
+    result.error.errors.map(issue => ({
+      message: issue.message,
+      errorCode: issue.path.join('.')
+    }))
+    return res.status(401).json({ error: result.error.flatten() });
+  }
+  const { email, password, name, username } = result.data
 
-  try{
+  try {
     let { error, data } = await supabase.auth.signUp({
       email: email,
       password: password,
