@@ -55,3 +55,7 @@
 .navigationLinks {
   margin: 3rem 0 0;
 }
+
+.validationError {
+  color: red;
+}

@@ -4,10 +4,10 @@ import { z } from "zod";
 
 
 export const signUpSchema= z.object({
-  username: z.string().min(1),
+  username: z.string().min(1, 'Please enter a username'),
   email: z.string().email(),
-  password: z.string().min(5),
-  name: z.string().min(1)
+  password: z.string().min(5, 'Password must contain at least 5 letters'),
+  name: z.string().min(1, 'Please enter your name')
 });
 
 

@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import utilStyles from '../../styles/utils.module.css';
 
 export default function SignUpForm ({}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [validationError, setValidationError] = useState({username: '', email: '', name: '', password: ''})
   const router = useRouter();
 
   // onChange functions
@@ -44,6 +46,17 @@ export default function SignUpForm ({}) {
       try {
         const errorResponse = await res.json();
         console.log('Error', errorResponse.error);
+
+        const errorsList = errorResponse.error.fieldErrors
+
+        setValidationError(previousState => ({ 
+          ...previousState, 
+          password: errorsList.password[0],
+          name: errorsList.name[0],
+          username: errorsList.username[0],
+          email: errorsList.email[0],
+        }))  
+            
       } catch (error) {
         console.error('Error parsing error response:', error);
       }
@@ -66,6 +79,7 @@ export default function SignUpForm ({}) {
               autoComplete="name"
               data-testid="nameField"
             />
+            <p className={utilStyles.validationError}>{validationError?.name}</p>
           </div>
           <div>
             <label>Email:</label> 
@@ -76,6 +90,7 @@ export default function SignUpForm ({}) {
               onChange={handleEmailChange}
               data-testid="emailField"
             />
+            <p className={utilStyles.validationError}>{validationError?.email}</p>
           </div>
           <div>
             <label>Username:</label> 
@@ -86,6 +101,7 @@ export default function SignUpForm ({}) {
               onChange={handleUsernameChange}
               data-testid="usernameField"
             />
+            <p className={utilStyles.validationError}>{validationError?.username}</p>
           </div>
           <div>
             <label>Password:</label> 
@@ -96,6 +112,7 @@ export default function SignUpForm ({}) {
               onChange={handlePasswordChange}
               data-testid="passwordField"
             />
+            <p className={utilStyles.validationError}>{validationError?.password}</p>
           </div>
           <button type="submit"data-testid="signUpButton">Sign up!</button>
         </form>
