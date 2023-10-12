@@ -17,8 +17,8 @@ export default async function POST(req, res) {
       },
     });
    
-    console.log(" error", error);
-    console.log(" data", data);
+    // console.log(" error", error);
+    // console.log(" data", data);
 
     if (error) {
       return res.status(401).json({ error: error.message });
