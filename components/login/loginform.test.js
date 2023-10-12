@@ -8,7 +8,6 @@ describe("logInForm", () => {
   it("renders the log in Form correctly", () => {
     render(<LogInForm/>)
     expect(screen.getByTestId("emailField")).toBeInTheDocument();
-    expect(screen.getByTestId("usernameField")).toBeInTheDocument();
     expect(screen.getByTestId("passwordField")).toBeInTheDocument();
     expect(screen.getByTestId("logInButton")).toBeInTheDocument();
   });

@@ -47,7 +47,9 @@ export default function LoginForm() {
             <input 
               type="email"
               value={email}
-              onChange={(handleEmailChange)} />
+              onChange={(handleEmailChange)} 
+              data-testid="emailField"
+            />
           </div>
           <div>
             <label>Password:</label>
@@ -56,10 +58,11 @@ export default function LoginForm() {
               name="password"
               onChange={(handlePasswordChange)}
               value={password}
+              data-testid="passwordField"
             />
           </div>
           <div>
-          <button type="submit"data-testid="logInButton">Log in</button>
+          <button type="submit"data-testid="logInButton">Log in!</button>
           </div>
         </form>
       </div>
