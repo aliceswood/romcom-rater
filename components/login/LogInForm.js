@@ -1,10 +1,14 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import utilStyles from '../../styles/utils.module.css';
+
 
 export default function LoginForm() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [validationError, setValidationError] = useState({invalid: ''})
+
 
    // onChange functions
     const handleEmailChange = (event) => {
@@ -30,8 +34,19 @@ export default function LoginForm() {
     if (res.status === 200) {
       console.log('User logged in');
       router.push('/userpage')
-    } else {
+    } else { 
+      try {
+      const errorResponse = await res.json();
+      console.log('Error', errorResponse.error);
+
+       setValidationError(previousState => ({ 
+        ...previousState, 
+       invalid: 'invalid log in credentials',
+      }))  
+    } catch (error) {
       console.log('Error', res.error);
+    }
+    router.push('/login');
       // add redirect and error handling for failed sign up
     }
   }
@@ -50,6 +65,7 @@ export default function LoginForm() {
               onChange={(handleEmailChange)} 
               data-testid="emailField"
             />
+            <p className={utilStyles.validationError}>{validationError?.email}</p>
           </div>
           <div>
             <label>Password:</label>
@@ -60,6 +76,7 @@ export default function LoginForm() {
               value={password}
               data-testid="passwordField"
             />
+            <p className={utilStyles.validationError}>{validationError?.invalid}</p>
           </div>
           <div>
           <button type="submit"data-testid="logInButton">Log in!</button>
