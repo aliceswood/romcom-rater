@@ -1,11 +1,9 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 
-export default withIronSessionApiRoute(
+const handler = withIronSessionApiRoute(
   async function POST(req, res, session) {
     await req.session.destroy();
     res.send({ ok: true });
-    console.log(req.session)
-
   },
   {
     cookieName: 'RomCom Rater Cookie',
@@ -16,3 +14,5 @@ export default withIronSessionApiRoute(
   },
 
 )
+
+export default handler;
