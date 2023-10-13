@@ -4,9 +4,16 @@ import profilePic from './profile.jpg';
 import Head from 'next/head';
 import styles from './index.module.css';
 import utilStyles from '../../styles/utils.module.css';
+import { supabase } from '../../lib/initSupabase';
 
 const  name = 'Alice'
 export default function UserPage({children, home}) {
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    router.refresh()
+  }
+
   return (
     <>
     <Head>
@@ -31,6 +38,7 @@ export default function UserPage({children, home}) {
         <div className={utilStyles.navigationlinks}>
           <Link href="/" data-testid="homeLink" id="homeLink">← Back to home</Link>
         </div>
+        <button onClick={handleSignOut}>Sign out</button>
     </>
   );
 }

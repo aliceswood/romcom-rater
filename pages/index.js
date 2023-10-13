@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
+import { supabase } from '../lib/initSupabase';
 
 export const siteTitle = 'Romcom Rater';
 export async function getServerSideProps() {
@@ -19,6 +20,11 @@ export async function getServerSideProps() {
 
 export default function Home({repo}) {
 
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    router.refresh()
+  }
+
   const filmList = repo.results.map(((film, i) => (
     <p key={i}>{film.title}</p>
   )))
@@ -32,6 +38,7 @@ export default function Home({repo}) {
       <div className={utilStyles.navigationLinks}>
         <Link href="/userpage" data-testid="userPageLink" id="userLink">User page →</Link>
       </div>
+      <button onClick={handleSignOut}>Sign out</button>
     </>
   )
 
