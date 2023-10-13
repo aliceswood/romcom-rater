@@ -41,7 +41,7 @@ export default function SignUpForm ({}) {
     })
     if (res.status === 200) {
       console.log('User signed up');
-      router.push('/login')
+      router.push('/userpage')
     } else {
       try {
         const errorResponse = await res.json();

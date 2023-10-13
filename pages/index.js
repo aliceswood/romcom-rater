@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
-import { supabase } from '../lib/initSupabase';
+import { useRouter } from 'next/router';
+
 
 export const siteTitle = 'Romcom Rater';
 export async function getServerSideProps() {
@@ -19,10 +20,16 @@ export async function getServerSideProps() {
 }
 
 export default function Home({repo}) {
-
+  const router = useRouter();
   const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    router.refresh()
+    await fetch('/api/signOut', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    router.push('/login')
   }
 
   const filmList = repo.results.map(((film, i) => (
