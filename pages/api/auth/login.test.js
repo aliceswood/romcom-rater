@@ -1,11 +1,11 @@
-import handler from "./register";
-import { supabase } from "../../lib/initSupabase";
+import handler from "./login.js";
+import { supabase } from "../../../lib/initSupabase";
 import { createMocks } from "node-mocks-http";
 
-jest.mock("../../lib/initSupabase");
+jest.mock("../../../lib/initSupabase");
 
-describe("Sign up", () => {
-  it("user signed up", async () => {
+describe('Login', () => {
+  it('logs in when correct details are provided', async () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
@@ -14,24 +14,18 @@ describe("Sign up", () => {
         name: "name",
         username: "username",
       },
-    });
+    })
 
-    jest.spyOn(supabase.auth, "signUp").mockReturnValue({
+    jest.spyOn(supabase.auth, "signInWithPassword").mockReturnValue({
       data: { user: "test" },
       error: null,
     });
 
     await handler(req, res);
 
-    expect(supabase.auth.signUp).toHaveBeenCalledWith({
+    expect(supabase.auth.signInWithPassword).toHaveBeenCalledWith({
       email: "email@example.com",
       password: "password",
-      options: {
-        data: {
-          name: "name",
-          username: "username",
-        },
-      },
     });
 
     expect(res._getStatusCode()).toEqual(200);
@@ -40,24 +34,21 @@ describe("Sign up", () => {
         user: "test",
       })
     );
-  });
-  
-  it("throws an error", async () => {
+  })
+
+  it('throws an error when incorrect details are given', async () => {
     const { req, res } = createMocks({
       method: "POST",
       body: {
         email: "email@example.com",
         password: "password",
-        name: "name",
-        username: "username",
       },
     });
-
-    const mockError = new Error("Sign up error");
+    const mockError = new Error("Login error");
     
     jest.fn().mockReturnValue({ user: null, error: mockError });
-    jest.spyOn(supabase.auth, "signUp").mockReturnValue({ error: mockError });
-
+    jest.spyOn(supabase.auth, "signInWithPassword").mockReturnValue({ error: mockError });
+    
     await handler(req, res);
 
     expect(res._getStatusCode()).toEqual(401);
@@ -67,7 +58,4 @@ describe("Sign up", () => {
       })
     );
   });
-
-
-  // invalid details passed - error thrown
 });

@@ -8,7 +8,7 @@ export const signUpSchema= z.object({
   password: z.string().min(5, 'Password must contain at least 5 letters'),
 });
 
-export default withIronSessionApiRoute(
+const handler = withIronSessionApiRoute(
   async function POST(req, res) {
     const result = signUpSchema.safeParse(req.body)
     if ( !result.success) {
@@ -44,7 +44,7 @@ export default withIronSessionApiRoute(
       return res.status(200).json({ user: user });
 
     } catch (error) {
-      console.error("Error during sign-up:", error);
+      console.error("Error during login:", error);
       return res.status(500).json({ error: "Internal server error" });
     }
   },  
@@ -56,3 +56,5 @@ export default withIronSessionApiRoute(
     }
   }
 )
+
+export default handler;
