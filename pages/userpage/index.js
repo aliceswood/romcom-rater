@@ -4,12 +4,10 @@ import profilePic from './profile.jpg';
 import Head from 'next/head';
 import styles from './index.module.css';
 import utilStyles from '../../styles/utils.module.css';
-import { useRouter } from 'next/router';
 
 
 const name = 'Alice'
 export default function UserPage({children, home}) {
-  const router = useRouter();
 
   const handleSignOut = async (event) => {
     event.preventDefault();

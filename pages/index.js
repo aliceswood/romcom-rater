@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-
 
 export const siteTitle = 'Romcom Rater';
 export async function getServerSideProps() {
@@ -20,7 +18,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home({repo}) {
-  const router = useRouter();
+
   const handleSignOut = async () => {
     await fetch('/api/signOut', {
       method: 'POST',
