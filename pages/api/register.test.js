@@ -1,6 +1,7 @@
 import handler from "./register";
 import { supabase } from "../../lib/initSupabase";
 import { createMocks } from "node-mocks-http";
+// import { withIronSessionApiRoute } from "iron-session/next";
 
 jest.mock("../../lib/initSupabase");
 

@@ -1,5 +1,5 @@
 import { supabase } from "../../lib/initSupabase";
-import { serialize } from 'cookie';
+import { withIronSessionApiRoute } from "iron-session/next";
 import { z } from "zod";
 
 
@@ -11,41 +11,59 @@ export const signUpSchema= z.object({
 });
 
 
-export default async function POST(req, res) {
-  const result = signUpSchema.safeParse(req.body)
-  if ( !result.success) {
-    result.error.errors.map(issue => ({
-      message: issue.message,
-      errorCode: issue.path.join('.')
-    }))
-    return res.status(401).json({ error: result.error.flatten() });
-  }
-  const { email, password, name, username } = result.data
-
-  try {
-    let { error, data } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-      options: {
-        data: {
-          name: name,
-          username: username,
-        },
-      },
-    });
-   
-    // console.log(" error", error);
-    // console.log(" data", data);
-
-    if (error) {
-      return res.status(401).json({ error: error.message });
+const handler = withIronSessionApiRoute(
+  async function POST(req, res) {
+    const result = signUpSchema.safeParse(req.body)
+    if ( !result.success) {
+      const errorDetails = result.error.errors.map(issue => ({
+        message: issue.message,
+        errorCode: issue.path.join('.')
+      }))
+      return res.status(401).json({ error: errorDetails });
     }
 
-    const user = data.user
-    res.setHeader('Set-Cookie', serialize('userid', user.id))
-    return res.status(200).json({ user: user });
-  } catch (error) {
-    console.error("Error during sign-up:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    const { email, password, name, username } = result.data
+
+    try {
+      let { error, data } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: {
+            name: name,
+            username: username,
+          },
+        },
+      });
+    
+      // console.log(" error", error);
+      // console.log(" data", data);
+
+      if (error) {
+        return res.status(401).json({ error: error.message });
+      }
+
+      const user = data.user
+
+      req.session.user = {
+        id: user.id,
+        admin: true,
+      };
+
+      await req.session.save();
+      return res.status(200).json({ user: user });
+    } catch (error) {
+      console.error("Error during sign-up:", error);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+  },  
+  {
+    cookieName: 'RomCom Rater Cookie',
+    password: process.env.COOKIE_PASSWORD,
+    cookieOptions: {
+      secure: process.env.NODE_ENV === 'production',
+    }
   }
-}  
+)
+
+export default handler;
