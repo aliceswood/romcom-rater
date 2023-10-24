@@ -114,7 +114,7 @@ export default function SignUpForm ({}) {
             />
             <p className={utilStyles.validationError}>{validationError?.password}</p>
           </div>
-          <button type="submit"data-testid="signUpButton">Sign up!</button>
+          <button className="button" type="submit"data-testid="signUpButton">Sign up!</button>
         </form>
       </div>
     </>
