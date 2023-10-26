@@ -126,16 +126,26 @@ form button:hover {
   height: 100%;
   z-index: 1;
 }
+/* background moving hearts */
+
+.bg-bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
 
 .bg-bubbles li {
   position: absolute;
   list-style: none;
   display: block;
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   background: url("../public/images/heart-image.png") no-repeat center center;
   background-size: contain;
-  bottom: -100px;
+  bottom: -220px;
 
   animation: heart 25s infinite;
   transition-timing-function: linear;
@@ -148,7 +158,7 @@ bg-bubbles li:nth-child(2) {
   left: 20%;
   width: 80px;
   height: 80px;
-  animation-delay: 2s;
+  animation-delay: 3s;
   animation-duration: 17s;
 }
 
@@ -190,20 +200,27 @@ bg-bubbles li:nth-child(2) {
 }
 
 .bg-bubbles li:nth-child(9) {
-  left: 25%;
-  width: 60px;
-  height: 60px;
+  left: 15%;
+  width: 250px;
+  height: 250px;
   animation-delay: 2s;
   animation-duration: 40s;
 }
 
 .bg-bubbles li:nth-child(10) {
   left: 90%;
-  width: 160px;
-  height: 160px;
+  width: 200px;
+height: 200px;
   animation-delay: 11s;
 }
 
+.bg-bubbles li:nth-child(11) {
+  left: 85%;
+  width: 250px;
+  height: 250px;
+  animation-delay: 2s;
+  animation-duration: 40s;
+}
 @keyframes heart {
   0% {
     transform: translateY(0px);

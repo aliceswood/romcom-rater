@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import utilStyles from '../../styles/utils.module.css';
 
 export default function SignUpForm ({}) {
@@ -66,9 +67,9 @@ export default function SignUpForm ({}) {
 
   return (
     <> 
-      <div>
-        <h2>Sign Up Form</h2>
-        <form onSubmit={handleSubmit}>  
+      <div className="formContainer">
+        <h2>Sign Up</h2>
+        <form onSubmit={handleSubmit} className="formContainer">  
           <div>
           <label>Name:</label> 
             <input 
@@ -115,6 +116,9 @@ export default function SignUpForm ({}) {
             <p className={utilStyles.validationError}>{validationError?.password}</p>
           </div>
           <button className="button" type="submit"data-testid="signUpButton">Sign up!</button>
+          <div>
+            <Link href="/login" data-testid="logInPageLink" id="logInPage">Already have an account?</Link>
+          </div>
         </form>
       </div>
     </>
