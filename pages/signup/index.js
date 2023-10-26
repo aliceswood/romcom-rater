@@ -1,5 +1,7 @@
 import SignUpForm from '../../components/signup/SignUpForm';
 import Head from 'next/head';
+import Background from '../../components/background/background';
+
 
 export default function SignUpPage () {
 
@@ -9,20 +11,8 @@ export default function SignUpPage () {
         <title>RomCom Rater: Sign Up</title>
       </Head>
       <>
-        <ul className="bg-bubbles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
         <SignUpForm/>
+        <Background/>
       </> 
     </>
   )

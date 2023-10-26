@@ -69,7 +69,7 @@ export default function SignUpForm ({}) {
     <> 
       <div className="formContainer">
         <h2>Sign Up</h2>
-        <form onSubmit={handleSubmit} className="formContainer">  
+        <form onSubmit={handleSubmit}>  
           <div>
           <label>Name:</label> 
             <input 
