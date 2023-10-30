@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import utilStyles from '../../styles/utils.module.css';
+import Link from 'next/link';
+
 
 
 export default function LoginForm() {
@@ -54,7 +56,7 @@ export default function LoginForm() {
   
   return (
     <>
-     <div>
+     <div className="formContainer">
         <h2>Login Form</h2>
         <form onSubmit={handleLogIn}>
           <div>
@@ -81,6 +83,9 @@ export default function LoginForm() {
           <div>
           <button type="submit"data-testid="logInButton">Log in!</button>
           </div>
+          <div>
+        <Link href="/signup" data-testid="signUpPage" id="signUpPage">Don't have an account yet?</Link>
+      </div>
         </form>
       </div>
     </>

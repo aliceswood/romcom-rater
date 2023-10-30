@@ -71,10 +71,13 @@ form {
   padding: 20px 0;
   position: relative;
   z-index: 2;
+  background-color: rgb(255 255 255 / 20%);
+  backdrop-filter: blur(6px);
+  max-width: 425px;
+  margin: auto;
 }
 
 form div {
-  display: block;
   text-align: center;
   padding: 10px 15px;
 }
