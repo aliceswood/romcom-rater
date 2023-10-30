@@ -94,7 +94,7 @@ form input {
   display: block;
   text-align: center;
   font-size: 18px;
-  color: white;
+  color: rgb(113, 47, 96);
   transition-duration: 0.25s;
   font-weight: 300;
 }
