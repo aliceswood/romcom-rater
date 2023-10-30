@@ -19,7 +19,7 @@ const handler = withIronSessionApiRoute(
         message: issue.message,
         errorCode: issue.path.join('.')
       }))
-      return res.status(401).json({ error: errorDetails });
+      return res.status(401).json({ errorType: 'validation', error: errorDetails });
     }
 
     const { email, password, name, username } = result.data
@@ -40,7 +40,7 @@ const handler = withIronSessionApiRoute(
       // console.log(" data", data);
 
       if (error) {
-        return res.status(401).json({ error: error.message });
+        return res.status(401).json({ errorType: 'general', error: error.message });
       }
 
       const user = data.user

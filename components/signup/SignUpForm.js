@@ -81,8 +81,8 @@ export default function SignUpForm ({}) {
     } else if (passwordError) {
       alert(passwordError);
       return false;
-    } else { alert("Form submitted successfully!");
-    return true;
+    } else {
+      return true
     }
   }
 
@@ -109,18 +109,21 @@ export default function SignUpForm ({}) {
       } else {
         try {
           const errorResponse = await res.json();
-          console.log('Error', errorResponse.error);
+          if (errorResponse.errorType === 'validation') {
+            console.log('Error', errorResponse.error);
 
-          const errorsList = errorResponse.error.fieldErrors
+            const errorsList = errorResponse.error.fieldErrors
 
-          setValidationError(previousState => ({ 
-            ...previousState, 
-            password: errorsList.password ? errorsList.password[0] : '',
-            name: errorsList.name ? errorsList.name[0] : '',
-            username: errorsList.username ? errorsList.username[0] : '',
-            email: errorsList.email ? errorsList.email[0] : '',
-          }))  
-
+            setValidationError(previousState => ({ 
+              ...previousState, 
+              password: errorsList.password ? errorsList.password[0] : '',
+              name: errorsList.name ? errorsList.name[0] : '',
+              username: errorsList.username ? errorsList.username[0] : '',
+              email: errorsList.email ? errorsList.email[0] : '',
+            }))  
+          } else {
+            alert(`${errorResponse.error}`)
+          }
         } catch (error) {
           console.error('Error parsing error response:', error);
         }
