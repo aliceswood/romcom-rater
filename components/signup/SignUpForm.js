@@ -25,43 +25,107 @@ export default function SignUpForm ({}) {
     setPassword(event.target.value)
   };
 
+  // form fields validataion
+  function validateName(name) {
+    if (name.length == 0) {
+      return "Name cannot be empty";
+    } else {
+      return "";
+    }
+  }
+
+  function validateEmail(email) {
+    if (email.length == 0) {
+      return "Email cannot be empty";
+    } else {
+      return "";
+    }
+  }
+
+  function validatePassword(password) {
+    if (password.length == 0) {
+      return "Password cannot be empty";
+    } else {
+      return "";
+    }
+  }
+
+  function validateUsername(username) {
+    if (username.length == 0) {
+      return "Username cannot be empty";
+    } else {
+      return "";
+    }
+  }
+
+  function validateForm() {
+    let name = document.getElementById("name").value
+    let email = document.getElementById("email").value
+    let username = document.getElementById("username").value
+    let password = document.getElementById("password").value
+
+    let nameError = validateName(name);
+    let emailError = validateEmail(email);
+    let usernameError = validateUsername(username);
+    let passwordError = validatePassword(password);
+
+    if (nameError) {
+      alert(nameError);
+      return false;
+    } else if (emailError) {
+      alert(emailError);
+      return false;
+    } else if (usernameError) {
+      alert(usernameError);
+      return false;
+    } else if (passwordError) {
+      alert(passwordError);
+      return false;
+    } else { alert("Form submitted successfully!");
+    return true;
+    }
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    const res = await fetch("/api/register", {
-      body: JSON.stringify({
-        name: event.target.name.value,
-        email: event.target.email.value,
-        username: event.target.username.value,
-        password: event.target.password.value,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    })
-    if (res.status === 200) {
-      console.log('User signed up');
-      router.push('/userpage')
-    } else {
-      try {
-        const errorResponse = await res.json();
-        console.log('Error', errorResponse.error);
+    if (validateForm() === true) {
 
-        const errorsList = errorResponse.error.fieldErrors
+      const res = await fetch("/api/register", {
+        body: JSON.stringify({
+          name: event.target.name.value,
+          email: event.target.email.value,
+          username: event.target.username.value,
+          password: event.target.password.value,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      })
+      if (res.status === 200) {
+        console.log('User signed up');
+        router.push('/userpage')
+      } else {
+        try {
+          const errorResponse = await res.json();
+          console.log('Error', errorResponse.error);
 
-        setValidationError(previousState => ({ 
-          ...previousState, 
-          password: errorsList.password ? errorsList.password[0] : '',
-          name: errorsList.name ? errorsList.name[0] : '',
-          username: errorsList.username ? errorsList.username[0] : '',
-          email: errorsList.email ? errorsList.email[0] : '',
-        }))  
+          const errorsList = errorResponse.error.fieldErrors
 
-      } catch (error) {
-        console.error('Error parsing error response:', error);
+          setValidationError(previousState => ({ 
+            ...previousState, 
+            password: errorsList.password ? errorsList.password[0] : '',
+            name: errorsList.name ? errorsList.name[0] : '',
+            username: errorsList.username ? errorsList.username[0] : '',
+            email: errorsList.email ? errorsList.email[0] : '',
+          }))  
+
+        } catch (error) {
+          console.error('Error parsing error response:', error);
+        }
+        router.push('/signup');
       }
-      router.push('/signup');
     }
   }
 
@@ -74,6 +138,7 @@ export default function SignUpForm ({}) {
           <label>Name:</label> 
             <input 
               name="name" 
+              id="name" 
               type="text" 
               value={name} 
               onChange={handleNameChange}
@@ -87,6 +152,7 @@ export default function SignUpForm ({}) {
             <input 
               type="email" 
               name="email" 
+              id="email" 
               value={email} 
               onChange={handleEmailChange}
               data-testid="emailField"
@@ -97,7 +163,8 @@ export default function SignUpForm ({}) {
             <label>Username:</label> 
             <input 
               type="text" 
-              name="username" 
+              name="username"
+              id="username"  
               value={username} 
               onChange={handleUsernameChange}
               data-testid="usernameField"
@@ -109,6 +176,7 @@ export default function SignUpForm ({}) {
             <input 
               type="password" 
               name="password" 
+              id="password" 
               value={password} 
               onChange={handlePasswordChange}
               data-testid="passwordField"
