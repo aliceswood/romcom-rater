@@ -75,6 +75,7 @@ form {
   backdrop-filter: blur(6px);
   max-width: 425px;
   margin: auto;
+  border-radius: 0.4rem;
 }
 
 form div {

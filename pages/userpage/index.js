@@ -3,7 +3,7 @@ import Image from 'next/image';
 import profilePic from './profile.jpg';
 import Head from 'next/head';
 import utilStyles from '../../styles/utils.module.css';
-
+import Navbar from '../../components/navbar/navbar';
 
 const name = 'Alice'
 export default function UserPage({children, home}) {
@@ -27,6 +27,7 @@ export default function UserPage({children, home}) {
         <title>RomCom Rater: User Page</title>
       </Head>
         <>
+        <Navbar/>
           <Image
             priority
             src={profilePic}
