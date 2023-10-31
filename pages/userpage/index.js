@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import profilePic from './profile.jpg';
 import Head from 'next/head';
-import styles from './index.module.css';
 import utilStyles from '../../styles/utils.module.css';
 
 
@@ -27,7 +26,6 @@ export default function UserPage({children, home}) {
       <Head>
         <title>RomCom Rater: User Page</title>
       </Head>
-      <header className={styles.header}>
         <>
           <Image
             priority
@@ -42,7 +40,6 @@ export default function UserPage({children, home}) {
               {name}
           </h2>
         </>
-      </header>
       <div className={utilStyles.navigationlinks}>
         <Link href="/" data-testid="homeLink" id="homeLink">← Back to home</Link>
       </div>
