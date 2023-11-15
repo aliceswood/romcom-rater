@@ -2,6 +2,7 @@ import Head from 'next/head';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 import Navbar from '../components/navbar/navbar';
+import Background from '../components/background/background';
 
 export const siteTitle = 'Romcom Rater';
 export async function getServerSideProps() {
@@ -40,6 +41,7 @@ export default function Home({repo}) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
+      <Background/>
       <Navbar/>
       <div data-testid="filmTitle">{filmList}</div>
       <div className={utilStyles.navigationLinks}>
