@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import utilStyles from '../../styles/utils.module.css';
 import Navbar from '../../components/navbar/navbar';
 import Background from '../../components/background/Background';
 import { useRouter } from 'next/router'
@@ -31,11 +30,11 @@ export default function UserPage({children, home}) {
         <>
       <Background/>
         <Navbar/>
-          <h2 className={utilStyles.headingLg}>
+          <h2>
               {name}
           </h2>
         </>
-      <div className={utilStyles.navigationlinks}>
+      <div>
         <Link href="/" data-testid="homeLink" id="homeLink">← Back to home</Link>
       </div>
       <button onClick={handleSignOut}>Sign out</button>

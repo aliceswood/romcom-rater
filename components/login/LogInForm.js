@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import utilStyles from '../../styles/utils.module.css';
+import styled from 'styled-components';
 import Link from 'next/link';
 
 
@@ -54,6 +54,11 @@ export default function LoginForm() {
   }
     // visual feedback for user to be added.
   
+  const Validation = styled.p`
+    color: #d00370;
+    font-weight: 600;
+  `
+
   return (
     <>
      <div className="formContainer">
@@ -67,7 +72,7 @@ export default function LoginForm() {
               onChange={(handleEmailChange)} 
               data-testid="emailField"
             />
-            <p className={utilStyles.validationError}>{validationError?.email}</p>
+            <Validation>{validationError?.email}</Validation>
           </div>
           <div>
             <label>Password:</label>
@@ -78,7 +83,7 @@ export default function LoginForm() {
               value={password}
               data-testid="passwordField"
             />
-            <p className={utilStyles.validationError}>{validationError?.invalid}</p>
+            <Validation>{validationError?.invalid}</Validation>
           </div>
           <div>
           <button type="submit"data-testid="logInButton">Log in!</button>

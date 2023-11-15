@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import utilStyles from '../../styles/utils.module.css';
+import styled from 'styled-components';
 
 export default function SignUpForm ({}) {
   const [name, setName] = useState("");
@@ -70,16 +70,20 @@ export default function SignUpForm ({}) {
     let passwordError = validatePassword(password);
 
     if (nameError) {
-      alert(nameError);
+      setValidationError(previousState => ({ 
+        ...previousState, name: nameError ? nameError : ''}))
       return false;
     } else if (emailError) {
-      alert(emailError);
+      setValidationError(previousState => ({ 
+        ...previousState, email: emailError ? emailError : ''}))
       return false;
     } else if (usernameError) {
-      alert(usernameError);
+      setValidationError(previousState => ({ 
+        ...previousState, username: usernameError ? usernameError : ''}))
       return false;
     } else if (passwordError) {
-      alert(passwordError);
+      setValidationError(previousState => ({ 
+        ...previousState, password: passwordError ? passwordError : ''}))
       return false;
     } else {
       return true
@@ -132,6 +136,11 @@ export default function SignUpForm ({}) {
     }
   }
 
+  const Validation = styled.p`
+  color: #d00370;
+  font-weight: 600;
+`
+
   return (
     <> 
       <div className="formContainer">
@@ -148,7 +157,7 @@ export default function SignUpForm ({}) {
               autoComplete="name"
               data-testid="nameField"
             />
-            <p className={utilStyles.validationError}>{validationError?.name}</p>
+            <Validation>{validationError?.name}</Validation>
           </div>
           <div>
             <label>Email:</label> 
@@ -160,7 +169,7 @@ export default function SignUpForm ({}) {
               onChange={handleEmailChange}
               data-testid="emailField"
             />
-            <p className={utilStyles.validationError}>{validationError?.email}</p>
+            <Validation>{validationError?.email}</Validation>
           </div>
           <div>
             <label>Username:</label> 
@@ -172,7 +181,7 @@ export default function SignUpForm ({}) {
               onChange={handleUsernameChange}
               data-testid="usernameField"
             />
-            <p className={utilStyles.validationError}>{validationError?.username}</p>
+            <Validation>{validationError?.username}</Validation>
           </div>
           <div>
             <label>Password:</label> 
@@ -184,7 +193,7 @@ export default function SignUpForm ({}) {
               onChange={handlePasswordChange}
               data-testid="passwordField"
             />
-            <p className={utilStyles.validationError}>{validationError?.password}</p>
+            <Validation>{validationError?.password}</Validation>
           </div>
           <button className="button" type="submit"data-testid="signUpButton">Sign up!</button>
           <div>

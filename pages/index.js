@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 import Navbar from '../components/navbar/navbar';
 import Background from '../components/background/background';
@@ -44,7 +43,7 @@ export default function Home({repo}) {
       <Background/>
       <Navbar/>
       <div data-testid="filmTitle">{filmList}</div>
-      <div className={utilStyles.navigationLinks}>
+      <div>
         <Link href="/userpage" data-testid="userPageLink" id="userLink">User page →</Link>
       </div>
       <button onClick={handleSignOut}>Sign out</button>
