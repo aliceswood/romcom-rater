@@ -1,6 +1,6 @@
 import SignUpForm from '../../components/signup/SignUpForm';
 import Head from 'next/head';
-import Background from '../../components/background/background';
+import Background from '../../components/background/Background';
 import Navbar from '../../components/navbar/navbar';
 
 export default function SignUpPage () {

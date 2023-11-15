@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Navbar from '../components/navbar/navbar';
-import Background from '../components/background/background';
+import Background from '../components/background/Background';
 
 export const siteTitle = 'Romcom Rater';
 export async function getServerSideProps() {
