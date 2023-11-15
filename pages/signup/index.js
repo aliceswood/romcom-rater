@@ -10,11 +10,9 @@ export default function SignUpPage () {
       <Head>
         <title>RomCom Rater: Sign Up</title>
       </Head>
+      <Background/>
       <Navbar/>
-      <>
-        <SignUpForm/>
-        <Background/>
-      </> 
+      <SignUpForm/>
     </>
   )
 }

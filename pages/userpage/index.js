@@ -1,15 +1,17 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import profilePic from './profile.jpg';
 import Head from 'next/head';
 import utilStyles from '../../styles/utils.module.css';
 import Navbar from '../../components/navbar/navbar';
+import Background from '../../components/background/Background';
+import { useRouter } from 'next/router'
+
 
 const name = 'Alice'
 export default function UserPage({children, home}) {
 
   const handleSignOut = async (event) => {
     event.preventDefault();
+
 
     await fetch('/api/auth/signout', {
       method: 'POST',
@@ -27,16 +29,8 @@ export default function UserPage({children, home}) {
         <title>RomCom Rater: User Page</title>
       </Head>
         <>
+      <Background/>
         <Navbar/>
-          <Image
-            priority
-            src={profilePic}
-            className={utilStyles.borderCircle}
-            data-testid='Image'
-            height={108}
-            width={108}
-            alt=""
-          />
           <h2 className={utilStyles.headingLg}>
               {name}
           </h2>
