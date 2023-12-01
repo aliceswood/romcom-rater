@@ -3,6 +3,8 @@ import { keyframes } from "styled-components";
 import HeartImage from "./heart-image.png";
 import Image from 'next/image';
 
+
+// hot reloading is sometimes not working - ensure you restart dev server if changes not immediate
 export default function Background() {
   return (
     <>
