@@ -25,76 +25,10 @@ export default function SignUpForm ({}) {
     setPassword(event.target.value)
   };
 
-  // form fields validataion
-  function validateName(name) {
-    if (name.length == 0) {
-      return "Name cannot be empty";
-    } else {
-      return "";
-    }
-  }
-
-  function validateEmail(email) {
-    if (email.length == 0) {
-      return "Email cannot be empty";
-    } else {
-      return "";
-    }
-  }
-
-  function validatePassword(password) {
-    if (password.length == 0) {
-      return "Password cannot be empty";
-    } else {
-      return "";
-    }
-  }
-
-  function validateUsername(username) {
-    if (username.length == 0) {
-      return "Username cannot be empty";
-    } else {
-      return "";
-    }
-  }
-
-  function validateForm() {
-    let name = document.getElementById("name").value
-    let email = document.getElementById("email").value
-    let username = document.getElementById("username").value
-    let password = document.getElementById("password").value
-
-    let nameError = validateName(name);
-    let emailError = validateEmail(email);
-    let usernameError = validateUsername(username);
-    let passwordError = validatePassword(password);
-
-    if (nameError) {
-      setValidationError(previousState => ({ 
-        ...previousState, name: nameError ? nameError : ''}))
-      return false;
-    } else if (emailError) {
-      setValidationError(previousState => ({ 
-        ...previousState, email: emailError ? emailError : ''}))
-      return false;
-    } else if (usernameError) {
-      setValidationError(previousState => ({ 
-        ...previousState, username: usernameError ? usernameError : ''}))
-      return false;
-    } else if (passwordError) {
-      setValidationError(previousState => ({ 
-        ...previousState, password: passwordError ? passwordError : ''}))
-      return false;
-    } else {
-      return true
-    }
-  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    if (validateForm() === true) {
-
       const res = await fetch("/api/register", {
         body: JSON.stringify({
           name: event.target.name.value,
@@ -133,7 +67,6 @@ export default function SignUpForm ({}) {
         }
         router.push('/signup');
       }
-    }
   }
 
   const Validation = styled.p`
@@ -155,7 +88,8 @@ export default function SignUpForm ({}) {
               value={name} 
               onChange={handleNameChange}
               autoComplete="name"
-              data-testid="nameField"
+              data-testid="nameField"              
+              required={true}
             />
             <Validation>{validationError?.name}</Validation>
           </div>
@@ -168,6 +102,7 @@ export default function SignUpForm ({}) {
               value={email} 
               onChange={handleEmailChange}
               data-testid="emailField"
+              required={true}
             />
             <Validation>{validationError?.email}</Validation>
           </div>
@@ -180,6 +115,7 @@ export default function SignUpForm ({}) {
               value={username} 
               onChange={handleUsernameChange}
               data-testid="usernameField"
+              required={true}
             />
             <Validation>{validationError?.username}</Validation>
           </div>
@@ -192,6 +128,7 @@ export default function SignUpForm ({}) {
               value={password} 
               onChange={handlePasswordChange}
               data-testid="passwordField"
+              required={true}
             />
             <Validation>{validationError?.password}</Validation>
           </div>
