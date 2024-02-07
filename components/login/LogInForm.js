@@ -43,7 +43,7 @@ export default function LoginForm() {
 
        setValidationError(previousState => ({ 
         ...previousState, 
-       invalid: 'invalid log in credentials',
+       invalid: 'Invalid Details',
       }))  
     } catch (error) {
       console.log('Error', res.error);
@@ -71,8 +71,8 @@ export default function LoginForm() {
               value={email}
               onChange={(handleEmailChange)} 
               data-testid="emailField"
+              required={true}
             />
-            <Validation>{validationError?.email}</Validation>
           </div>
           <div>
             <label>Password:</label>
@@ -82,6 +82,7 @@ export default function LoginForm() {
               onChange={(handlePasswordChange)}
               value={password}
               data-testid="passwordField"
+              required={true}
             />
             <Validation>{validationError?.invalid}</Validation>
           </div>

@@ -9,9 +9,9 @@ export default function LogInPage () {
     <Head>
       <title>RomCom Rater: Log In</title>
     </Head>
+    <Background/>
     <Navbar/>
     <LogInForm/>
-    <Background/>
     </>
   )
 }
