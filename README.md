@@ -29,3 +29,11 @@ The next step I took was to decide on using Next.js as the project framework. I 
 I started off following the Next.js tutorial which I adapted slightly from a blog to a film storage. Upon finishing the tutorial, I identified that it was reliant on reading files from my computer in order to display information. This was not ideal as I would be using an external API to import film information, so while those files served their purpose as a learning tool, the files needed some streamlining.
 
 Another point that I noted from the tutorial is that testing was not discussed. Now that I had the bare bones and a couple of pages, I decided it would be a good time to get some very basic tests as part of the project to ensure pages were rendering.
+
+The first pages tackled were the login and sign up pages. These were linked to my Supabase database in order to store and validate user login details.
+
+I implemented some styling with styled components and an animated background that took some playing around with to get working!
+
+![signup page](./public/images/signup-page.png)
+
+Next steps are to give the main page movies some more styling and functionality.

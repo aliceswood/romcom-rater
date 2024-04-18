@@ -34,7 +34,7 @@ const heartAnimation = keyframes`
   opacity: 0;
 }
 100% {
-  transform: translateY(-2000px) rotate(600deg);
+  transform: translateY(-4000px) rotate(600deg);
   opacity: 0;
 }
 `;
@@ -45,7 +45,7 @@ const Hearts = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 60%;
+  opacity: 80%;
   isolation: isolate;
 `;
 
