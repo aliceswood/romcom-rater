@@ -1,4 +1,4 @@
-import { supabase } from "../../lib/initSupabase";
+import { supabase } from "../../lib/initSupabaseBackend";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { z } from "zod";
 
