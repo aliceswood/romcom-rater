@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { supabase } from '../../lib/initSupabase';
 
-
+const Validation = styled.p`
+    color: #d00370;
+    font-weight: 600;
+  `
 
 export default function LoginForm() {
   const router = useRouter();
@@ -43,11 +46,7 @@ export default function LoginForm() {
     }
   };
   
-  const Validation = styled.p`
-    color: #d00370;
-    font-weight: 600;
-  `
-
+  
   return (
     <>
      <div className="formContainer">
