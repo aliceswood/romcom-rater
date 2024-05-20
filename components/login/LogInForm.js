@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { supabase } from '../../lib/initSupabase';
 
 
 
@@ -23,36 +24,24 @@ export default function LoginForm() {
   const handleLogIn = async (event) => {
     event.preventDefault();
 
-    const res = await fetch("/api/auth/login", {
-      body: JSON.stringify({
+    try {
+      const { user, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    })
-    if (res.status === 200) {
-      console.log('User logged in');
-      router.push('/userpage')
-    } else { 
-      try {
-      const errorResponse = await res.json();
-      console.log('Error', errorResponse.error);
+      });
 
-       setValidationError(previousState => ({ 
-        ...previousState, 
-       invalid: 'Invalid Details',
-      }))  
+      if (error) {
+        console.error('Login error:', error.message);
+        setValidationError({ invalid: 'Invalid email or password' });
+      } else {
+        console.log('User logged in:', user);
+        router.push('/userpage');
+      }
     } catch (error) {
-      console.log('Error', res.error);
+      console.error('Unexpected error during login:', error.message);
+      setValidationError({ invalid: 'Unexpected error occurred' });
     }
-    router.push('/login');
-      // add redirect and error handling for failed sign up
-    }
-  }
-    // visual feedback for user to be added.
+  };
   
   const Validation = styled.p`
     color: #d00370;
