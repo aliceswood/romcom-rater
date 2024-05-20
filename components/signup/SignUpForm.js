@@ -3,6 +3,10 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+      const Validation = styled.p`
+      color: #d00370;
+      font-weight: 600;
+    `
 export default function SignUpForm ({}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -69,10 +73,6 @@ export default function SignUpForm ({}) {
       }
   }
 
-  const Validation = styled.p`
-  color: #d00370;
-  font-weight: 600;
-`
 
   return (
     <> 
