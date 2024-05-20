@@ -50,7 +50,8 @@ const Hearts = styled.div`
 `;
 
 const OneHeart = styled(Image).attrs((props) => ({
-  src: HeartImage
+  src: HeartImage,
+  alt: "Heart Image"
 }))`
   position: absolute;
   list-style: none;
