@@ -41,7 +41,7 @@ export default function LoginForm() {
 					access_token: authData.session.access_token,
 					refresh_token: authData.session.refresh_token,
 				});
-				console.log("User logged in:", user);
+				// console.log("User logged in:", authData.session.user);
 				router.push("/userpage");
 			}
 		} catch (error) {
