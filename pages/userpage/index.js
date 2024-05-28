@@ -5,6 +5,7 @@ import Background from "../../components/background/Background";
 import { supabase } from "../../lib/initSupabase";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import styled from "styled-components";
 
 export default function UserPage() {
 	const [user, setUser] = useState(null);
@@ -20,7 +21,10 @@ export default function UserPage() {
 
 			if (session) {
 				try {
-					const { data: {user}, error } = await supabase.auth.getUser();
+					const {
+						data: { user },
+						error,
+					} = await supabase.auth.getUser();
 					if (error) {
 						console.error("Error fetching user:", error.message);
 					} else {
@@ -59,7 +63,7 @@ export default function UserPage() {
 			<>
 				<Background />
 				<Navbar />
-				<div>
+				<UserCard>
 					{user ? (
 						<div key={user.id}>
 							<h2>{name}</h2>
@@ -67,7 +71,8 @@ export default function UserPage() {
 					) : (
 						<p>No user found.</p>
 					)}
-				</div>
+					<div>fun things here</div>
+				</UserCard>
 			</>
 			<div>
 				<Link href="/" data-testid="homeLink" id="homeLink">
@@ -78,3 +83,13 @@ export default function UserPage() {
 		</>
 	);
 }
+
+const UserCard = styled.div`
+	padding: 30px;
+	background-color: rgb(255 255 255 / 20%);
+	backdrop-filter: blur(6px);
+	max-width: 25%;
+	margin: auto;
+	border-radius: 0.4rem;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+`;
