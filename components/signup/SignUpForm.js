@@ -132,7 +132,7 @@ export default function SignUpForm ({}) {
             />
             <Validation>{validationError?.password}</Validation>
           </div>
-          <button className="button" type="submit"data-testid="signUpButton">Sign up!</button>
+          <button type="submit"data-testid="signUpButton">Sign up!</button>
           <div>
             <Link href="/login" data-testid="logInPageLink" id="logInPage">Already have an account?</Link>
           </div>
