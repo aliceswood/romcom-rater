@@ -8,7 +8,7 @@
 }
 
 html {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   color: rgb(140, 30, 113);
   font-weight: 500;
   background: peachpuff;
@@ -64,10 +64,10 @@ img {
 
 .formContainer {
   text-align: center;
-  margin-top: 150px;
 }
 
-form {
+form,
+.homepageWrapper {
   padding: 10px 0;
   z-index: 2;
   background-color: rgb(255 255 255 / 20%);
@@ -75,14 +75,21 @@ form {
   max-width: 425px;
   margin: auto;
   border-radius: 0.4rem;
+  display: flex;
+  width: 75%;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  flex-direction: column;
 }
 
 form div {
-  text-align: center;
-  padding: 10px 15px;
+  padding: 5px;
 }
+
 form input {
-  display: block;
   appearance: none;
   outline: 0;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -124,4 +131,46 @@ form button {
 
 form button:hover {
   background-color: rgb(245, 247, 249);
+}
+
+.menuBar {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: rgb(113, 47, 96);
+}
+
+.header {
+  color: rgb(113, 47, 96);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0.5rem ;
+  position: relative;
+  
+}
+.navButtonsWrapper{
+  display: flex;
+}
+
+.buttons {
+  border: 1px solid rgb(113, 47, 96); 
+  background-color: rgb(255 255 255 / 20%);
+  backdrop-filter: blur(6px); 
+  color: rgb(140, 47, 96);
+  padding: 0.5rem 2rem; 
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-right: 1.5rem; 
+
 }

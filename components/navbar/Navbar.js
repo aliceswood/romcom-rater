@@ -1,5 +1,4 @@
 import Link from "next/link";
-import styles from "./Navbar.module.css";
 
 const Navbar = ({ session }) => {
 
@@ -17,29 +16,26 @@ const Navbar = ({ session }) => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className="header">
       <div>
-        <p className={styles.title}>RomCom Rater</p>
+        <p className="title">RomCom Rater</p>
       </div>
       {session?.user ? (
-        <ul className={styles.navContent}>
-          <Link href="/">
-            <li className={styles.name}>Home</li>
-          </Link>
+        <ul>
           <button
-            className={styles.buttons}
+            className="buttons"
             onClick={() => {handleSignOut}}
           >
             Logout
           </button>
         </ul>
       ) : (
-        <div className={styles.navContent}>
+        <div className="navButtonsWrapper">
           <Link href="/login">
-            <p className={styles.buttons}>Login</p>
+            <p className="buttons">Login</p>
           </Link>
           <Link href="/signup">
-            <p className={styles.buttons}>Signup</p>
+            <p className="buttons">Signup</p>
           </Link>
         </div>
       )}
