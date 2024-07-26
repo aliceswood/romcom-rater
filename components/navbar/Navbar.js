@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SignOutButton from "../signout/Signout";
 
 const Navbar = ({ session }) => {
 
@@ -28,6 +29,7 @@ const Navbar = ({ session }) => {
           >
             Logout
           </button>
+          <SignOutButton />
         </ul>
       ) : (
         <div className="navButtonsWrapper">
@@ -37,6 +39,7 @@ const Navbar = ({ session }) => {
           <Link href="/signup">
             <p className="buttons">Signup</p>
           </Link>
+          <SignOutButton />
         </div>
       )}
     </div>
