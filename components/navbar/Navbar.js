@@ -1,34 +1,28 @@
-import Link from "next/link";
-import SignOutButton from "../signout/Signout";
+import Link from 'next/link'
+import SignOutButton from '../signout/Signout'
+import React, { useEffect, useState } from 'react';
 
-const Navbar = ({ session }) => {
 
-  const handleSignOut = async (event) => {
-    event.preventDefault();
+const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-    await fetch('/api/auth/signout', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    })
-    router.push('/login')
-  }
+  useEffect(() => {
+    const token = localStorage.getItem('supabase.auth.token')
+
+    if(token) {
+      setIsLoggedIn(true)
+    } else {
+      setIsLoggedIn(false)
+    }
+  }, []);
 
   return (
     <div className="header">
       <div>
         <p className="title">RomCom Rater</p>
       </div>
-      {session?.user ? (
+      {isLoggedIn ? (
         <ul>
-          <button
-            className="buttons"
-            onClick={() => {handleSignOut}}
-          >
-            Logout
-          </button>
           <SignOutButton />
         </ul>
       ) : (
@@ -39,11 +33,10 @@ const Navbar = ({ session }) => {
           <Link href="/signup">
             <p className="buttons">Signup</p>
           </Link>
-          <SignOutButton />
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
